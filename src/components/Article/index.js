@@ -10,6 +10,10 @@ class Article extends Component {
             title: PropTypes.string,
             text: PropTypes.string
         }).isRequired
+    };
+
+    static defaultProps = {
+        article: []
     }
 
     state = {
