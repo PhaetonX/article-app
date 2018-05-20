@@ -13,9 +13,13 @@ module.exports = {
           {
               test: /\.js$/,
               exclude: /(node_modules)/,
-              loader: 'babel-loader',
-              query: {
-                  presets: ['env', 'stage-0', 'react']
+              loader: require.resolve('babel-loader'),
+              options: {
+                // This is a feature of `babel-loader` for Webpack (not Babel itself).
+                // It enables caching results in ./node_modules/.cache/babel-loader/
+                // directory for faster rebuilds.
+                cacheDirectory: true,
+                plugins: ['react-hot-loader/babel'],
               }
           },
           {
