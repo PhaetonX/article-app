@@ -21,12 +21,12 @@ class Article extends Component {
     };
 
     render() {
-        const {article} = this.props;
-        const {isOpen} = this.state;
+        const {article, toggleOpen} = this.props;
+        const {isOpen} = this.props;
         return (
             <div>
                 <h3>{article.title}</h3>
-                <button onClick = {this.toggleOpen}>
+                <button onClick = {toggleOpen}>
                     {isOpen ? 'Close' : 'Open'}
                 </button>
                 {this.getBody()}
@@ -36,9 +36,10 @@ class Article extends Component {
     };
 
 
+
     getBody = () => {
-        const {article} = this.props;
-        if (!this.state.isOpen) return null
+        const {article, isOpen} = this.props;
+        if (!isOpen) return null
 
         return (
             <section>
@@ -46,12 +47,6 @@ class Article extends Component {
                 <CommentList comments = {article.comments}/>
             </section>
         )
-    };
-
-    toggleOpen = () => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
     };
 };
 

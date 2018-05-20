@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import ArticleList from './ArticleList'
-import {articles} from '../fixtures'
+import ArticleList from './components/ArticleList'
+import {articles} from './fixtures'
 import { hot } from 'react-hot-loader';
 
 class App extends Component {
