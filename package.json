@@ -4,7 +4,7 @@
   "description": "article-app pet project",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
+    "start": "webpack-dev-server --hot --mode development",
     "build": "webpack"
   },
   "repository": {
@@ -25,6 +25,7 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.11",
     "postcss-loader": "^2.1.5",
+    "react-hot-loader": "^4.2.0",
     "style-loader": "^0.21.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.3"
