@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Comment from '../Comment';
 import PropTypes from 'prop-types';
+import CommentForm from '../CommentForm';
 
 class CommentList extends Component {
     static propTypes = {
@@ -34,11 +35,17 @@ class CommentList extends Component {
 
         const {comments} = this.props;
 
-        if (!comments || !comments.length) return <p> No comments yet </p>
+        if (!comments || !comments.length) return  (
+            <div>
+                <p> No comments yet </p>
+                <CommentForm />
+            </div>
+        )
 
         return (
             <ul>
                 {comments.map(comment => <li key = {comment.id}> <Comment comment = {comment}/> </li>)}
+                <CommentForm />
             </ul>
         ) 
     }
