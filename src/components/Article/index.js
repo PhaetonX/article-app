@@ -32,6 +32,9 @@ class Article extends Component {
                 <button onClick = {toggleOpen}>
                     {isOpen ? 'Close' : 'Open'}
                 </button>
+                <button onClick = {this.handeDelete}>
+                    delete
+                </button>
                 <CSSTransitionGroup
                     transitionName = 'article'
                     transitionAppear
@@ -46,7 +49,11 @@ class Article extends Component {
         )
     };
 
-
+    handeDelete = () => {
+        const {deleteArticle, article} = this.props;
+        deleteArticle(article.id)
+        // const {} = this.props;
+    }
 
     getBody = () => {
         const {article, isOpen} = this.props;
