@@ -7,8 +7,6 @@ import Filters from './Filters';
 
 class App extends Component {
     render() {
-        const {articles} = this.props;
-
         return (
             <div>
                 <Filters />

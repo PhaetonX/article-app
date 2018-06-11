@@ -11,10 +11,17 @@ class ArticleList extends Component {
         //from accordion
         openItemId: PropTypes.string,
         toggleOpenItem: PropTypes.func.isRequired
-    }
+    };
     render() {
-        const { articles, openItemId, toggleOpenItem, deleteArticle} = this.props
-        const articleElements = articles.map(article => <li key={article.id}>
+        const { articles, openItemId, toggleOpenItem, deleteArticle, selected, dateRange: {from, to}} = this.props;
+        let filteredArticles = articles.filter(article => {
+            const published = Date.parse(article.date);
+            return (
+                 ( !selected.length || selected.includes(article.id) ) &&
+                 ( !from || !to || (published > Date.parse(from) && published < Date.parse(to)) )
+            )
+        });
+        const articleElements = filteredArticles.map(article => <li key={article.id}>
             <Article
                 article = {article}
                 isOpen = {article.id === openItemId}
@@ -32,5 +39,7 @@ class ArticleList extends Component {
 }
 
 export default connect(state => ({
-    articles: state.articles
+    articles: state.articles,
+    selected : state.filters.selected,
+    dateRange: state.filters.dateRange
 }), {deleteArticle})(accordion(ArticleList))
