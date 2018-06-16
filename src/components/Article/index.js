@@ -32,7 +32,7 @@ class Article extends Component {
                 <button onClick = {toggleOpen}>
                     {isOpen ? 'Close' : 'Open'}
                 </button>
-                <button onClick = {this.handeDelete}>
+                <button onClick = {this.handleDelete}>
                     delete
                 </button>
                 <CSSTransitionGroup
@@ -49,15 +49,14 @@ class Article extends Component {
         )
     };
 
-    handeDelete = () => {
+    handleDelete = () => {
         const {deleteArticle, article} = this.props;
         deleteArticle(article.id)
-        // const {} = this.props;
-    }
+    };
 
     getBody = () => {
         const {article, isOpen} = this.props;
-        if (!isOpen) return null
+        if (!isOpen) return null;
 
         return (
             <section>
@@ -66,6 +65,6 @@ class Article extends Component {
             </section>
         )
     };
-};
+}
 
 export default Article;
