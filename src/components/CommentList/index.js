@@ -6,14 +6,13 @@ import CommentForm from '../CommentForm';
 class CommentList extends Component {
     static propTypes = {
         comments: PropTypes.array,
-        //from toggleOpen decorator
         isOpen: PropTypes.bool,
         toggleOpen: PropTypes.func
-    }
+    };
 
     static defaultProps = {
         comments: []
-    }
+    };
 
     state = {
         isOpen: false
@@ -40,15 +39,15 @@ class CommentList extends Component {
                 <p> No comments yet </p>
                 <CommentForm />
             </div>
-        )
+        );
 
         return (
             <ul>
-                {comments.map(comment => <li key = {comment.id}> <Comment comment = {comment}/> </li>)}
+                {comments.map(id => <li key = {id}> <Comment id = {id}/> </li>)}
                 <CommentForm />
             </ul>
         ) 
-    }
+    };
 
     toggleOpen = () => {
         this.setState({

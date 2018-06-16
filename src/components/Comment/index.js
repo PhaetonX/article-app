@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux'
 
 const Comment = ({comment}) => {
     return (
@@ -15,8 +16,13 @@ const Comment = ({comment}) => {
 };
 
 Comment.PropTypes = ({
+    id: PropTypes.string.isRequired,
     comment: PropTypes.string.isRequired,
     user: PropTypes.string.isRequired
-}).isRequired
+}).isRequired;
 
-export default Comment;
+export default connect((state, ownProps) => {
+    return {
+       comment: state.comments.find(comment => comment.id = ownProps.id)
+    }
+})(Comment);
