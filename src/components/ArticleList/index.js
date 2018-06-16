@@ -4,6 +4,7 @@ import Article from '../Article'
 import accordion from '../../decorators/accordion';
 import {connect} from 'react-redux';
 import {deleteArticle} from '../../actions';
+import {filtratedArticlesSelector} from '../../selectors'
 
 class ArticleList extends Component {
     static propTypes = {
@@ -22,7 +23,7 @@ class ArticleList extends Component {
                 toggleOpen = {toggleOpenItem(article.id)}
                 deleteArticle = {deleteArticle}
             />
-        </li>)
+        </li>);
 
         return (
             <ul>
@@ -32,17 +33,4 @@ class ArticleList extends Component {
     }
 }
 
-export default connect(({articles, filters}) => {
-    const {selected, dateRange: {from, to}} = filters;
-
-    const filtredArticles = articles.filter(article => {
-        const published = Date.parse(article.date);
-        return (
-            ( !selected.length || selected.includes(article.id) ) &&
-            ( !from || !to || (published > Date.parse(from) && published < Date.parse(to)) )
-        )
-    });
-    return {
-        articles: filtredArticles
-    }
-}, {deleteArticle})(accordion(ArticleList))
+export default connect((state) => ({ articles: filtratedArticlesSelector(state)}), {deleteArticle})(accordion(ArticleList))
